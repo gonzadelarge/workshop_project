@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -60,9 +62,19 @@ class User implements UserInterface
     private $phone_number;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\OneToMany(targetEntity=Vehiculo::class, mappedBy="Cod_User")
      */
-    private $Vehiculo;
+    private $vehiculos;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Cita::class, inversedBy="user", cascade={"persist", "remove"})
+     */
+    private $Cod_Cita;
+
+    public function __construct()
+    {
+        $this->vehiculos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -205,14 +217,44 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getVehiculo(): ?string
+    /**
+     * @return Collection|Vehiculo[]
+     */
+    public function getVehiculos(): Collection
     {
-        return $this->Vehiculo;
+        return $this->vehiculos;
     }
 
-    public function setVehiculo(string $Vehiculo): self
+    public function addVehiculo(Vehiculo $vehiculo): self
     {
-        $this->Vehiculo = $Vehiculo;
+        if (!$this->vehiculos->contains($vehiculo)) {
+            $this->vehiculos[] = $vehiculo;
+            $vehiculo->setCodUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVehiculo(Vehiculo $vehiculo): self
+    {
+        if ($this->vehiculos->removeElement($vehiculo)) {
+            // set the owning side to null (unless already changed)
+            if ($vehiculo->getCodUser() === $this) {
+                $vehiculo->setCodUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCodCita(): ?Cita
+    {
+        return $this->Cod_Cita;
+    }
+
+    public function setCodCita(?Cita $Cod_Cita): self
+    {
+        $this->Cod_Cita = $Cod_Cita;
 
         return $this;
     }

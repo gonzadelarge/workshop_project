@@ -47,6 +47,16 @@ class Mecanico
      */
     private $horas;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Cita::class, inversedBy="mecanico", cascade={"persist", "remove"})
+     */
+    private $Cod_Cita;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Vehiculo::class, inversedBy="mecanico")
+     */
+    private $Cod_Vehiculo;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +130,30 @@ class Mecanico
     public function setHoras(int $horas): self
     {
         $this->horas = $horas;
+
+        return $this;
+    }
+
+    public function getCodCita(): ?Cita
+    {
+        return $this->Cod_Cita;
+    }
+
+    public function setCodCita(?Cita $Cod_Cita): self
+    {
+        $this->Cod_Cita = $Cod_Cita;
+
+        return $this;
+    }
+
+    public function getCodVehiculo(): ?Vehiculo
+    {
+        return $this->Cod_Vehiculo;
+    }
+
+    public function setCodVehiculo(?Vehiculo $Cod_Vehiculo): self
+    {
+        $this->Cod_Vehiculo = $Cod_Vehiculo;
 
         return $this;
     }
