@@ -14,6 +14,20 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+
+            <h1>Estoy en base</h1>
+
+            {% block pepe %} {% endblock %}
+
+            <script></script>
+
+        {% endblock %}
+
+        {% block footer %}
+        
+            <p>Esto es el footer</p>
+
+        {% endblock %}
     </body>
 </html>

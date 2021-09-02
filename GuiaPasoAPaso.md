@@ -16,3 +16,23 @@ P.D. Para salir de la terminal bash de php hay que introducir el comando exit.
 Una vez fuera del contendor php introducimos docker-compose down para cerrar/bajar los contendores.
 
 
+funcion en user (Request $request, EntityManagerInterface $doctrine, UserPasswordEncoderInterface $encoder,GuardAuthenticatorHandler $guard, LoginAuthenticator $formAuthenticator)
+
+para el form de user:
+
+$builder
+            ->add('email')
+            //->add('roles')
+            ->add('password',RepeatedType::class,
+            [
+                'type' => PasswordType::class,
+                'invalid_message' => 'The password fields must match.',
+                'options' => ['attr' => ['class' => 'password-field']],
+                'required' => true,
+                'first_options'  => ['label' => 'Password'],
+                'second_options' => ['label' => 'Repeat Password'],
+            ]       
+            )
+        ;
+
+
