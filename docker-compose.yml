@@ -25,8 +25,8 @@ services:
         build: 
             context: phpdocker/php-fpm
             args:
-                user: Alvaro
-                uid: 197610
+                user: 34617
+                uid: 197609
         working_dir: /application
         volumes:
             - .:/application:cached
