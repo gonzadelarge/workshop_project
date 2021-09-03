@@ -92,4 +92,23 @@ composer install
 Una vez hecho esto, en la URL http://localhost:8000 tendremos nuestra aplicación Symfony
 recién instalada.
 
-
+INSERT INTO user (
+    email,
+    roles,
+    password,
+    dni,
+    name,
+    lastname,
+    address,
+    phone_number
+  )
+VALUES (
+    "gonza@hub.es",
+    "[\"ROLE_ADMIN\"]",
+    "Hola1234",
+    "00005555A",
+    "Gonzalo",
+    "Calvo",
+    "calle Falsa",
+    666000555
+  );

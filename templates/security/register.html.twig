@@ -1,0 +1,11 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <h1 class="form__title">Registro</h1>
+    <div class="form">
+    {{ form_start(userForm) }}
+        {{ form_widget(userForm) }}
+        <p>¿Estas registrado? <a href="{{path('app_login')}}">Log In</a></p>
+        <button class="btn btn-lg btn-primary" type="submit">Registrarme</button>
+    {{ form_end(userForm) }}
+    </div>
+{% endblock %}
