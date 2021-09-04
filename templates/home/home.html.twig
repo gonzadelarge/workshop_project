@@ -1,5 +1,19 @@
 {% extends "base.html.twig" %}
 
-{% block pepe %}
-    <h2>Estamos en la Home</h2>
+{% block body %}
+   <div class="container mt-4 p-4 bg-light">
+       <div class="container-sm">
+        {% if is_granted("ROLE_USER") %}
+        <div class="p-5 text-center">
+            <h1 class="mb-3">{{app.user.name}}</h1>
+            <p class="mb-3">¿Cómo van esas ruedas?</p>
+        </div>
+        <div class="container-fluid text-center">
+            <a class="btn btn-primary" href="" role="button">Crear Cita</a>
+            <a class="btn btn-primary" href="" role="button">Añadir vehículoo</a>
+            <a class="btn btn-primary" href="" role="button">Consultar Mecánicos</a>
+        </div>
+            {% endif %}
+        </div>
+   </div>
 {% endblock %}

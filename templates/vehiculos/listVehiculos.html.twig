@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block body %} 
+
+    <div class="container">
+        <nav class="navbar navbar-dark bg-dark mt-2">
+            <a class="text-white nav-link" href="{{ path("newVehiculo") }}"><h4>Crear nuevo</h4></a>
+        </nav>
+        
+        <nav class="navbar navbar-dark bg-dark mt-2">
+            <h5 class="text-white nav-link">Listado de Vehiculos</h5> 
+        </nav>
+            {# {% for mensaje in app.flashes('exito') %}
+                <p>{{ mensaje }}</p>
+            {% endfor %} #}
+    
+        <div class="row row-cols-md-4 mt-3">
+        {% for vehiculo in vehiculos %}
+            <div class="col mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title">Matricula: <h5>{{vehiculo.matricula}}</h5></p>
+                        <p class="card-text">Marca: <h5>{{vehiculo.marca}}</h5></p>
+                        <p class="card-text">Modelo: <h5>{{vehiculo.modelo}}</h5></p>
+                        <p class="card-text">Modelo: <h5>{{vehiculo.year|date}}</h5></p>
+                        <a href="{{ path("showVehiculo", {id: vehiculo.id}) }}" class="btn btn-primary">Más Info</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+

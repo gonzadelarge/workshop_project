@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block body %}    
+
+<div class="container">
+    <nav class="navbar navbar-dark bg-dark mt-2">
+        <a class="text-white nav-link" href="{{ path("showVehiculos") }}"><h4>Volver</h4></a>
+    </nav>
+    <h2>Así luce tu coche</h2>
+
+    <div class="row row-cols-1 row-cols-md-2">
+        <div class="col mb-4">
+            <div class="card">
+                {# <img src="{{vehiculo.image}}" class="card-img-top"> #}
+                <div class="card-body">
+                    <p class="card-title">Matricula: <h5>{{vehiculo.matricula}}</h5></p>
+                    <p class="card-text">Marca: <h5>{{vehiculo.marca}}</h5></p>
+                    <p class="card-text">Modelo: <h5>{{vehiculo.modelo}}</h5></p>
+                    <p class="card-text">Modelo: <h5>{{vehiculo.year|date}}</h5></p>
+            
+                    <a href="{{ path("deleteVehiculo", {id: vehiculo.id}) }}" class="btn btn-primary">Borrar</a>
+                    <a href="{{ path("editVehiculo", {id: vehiculo.id}) }}" class="btn btn-primary">Editar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

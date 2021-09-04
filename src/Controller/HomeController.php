@@ -10,7 +10,7 @@
     {
 
         /**
-         * @Route("/home", name="showHome")
+         * @Route("/", name="showHome")
          */
         public function showHome() {
             return $this->render("home/home.html.twig");
