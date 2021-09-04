@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Cita;
+use App\Entity\Mecanico;
+use App\Entity\Vehiculo;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,9 +16,21 @@ class CitaFormType extends AbstractType
     {
         $builder
             ->add('fecha')
-            ->add('mecanico')
-            ->add('vehiculo')
-            ->add('user')
+            ->add('mecanico', EntityType::class,
+                [
+                    'class'=> Mecanico::class,
+                    'choice_label'=>'name',
+                    'multiple'=>true,
+                    'expanded'=>true
+                ]
+            )
+            ->add('vehiculo',EntityType::class,
+            [
+                'class'=> Vehiculo::class,
+                'choice_label'=>'name',
+                'multiple'=>true,
+                'expanded'=>true
+            ])
         ;
     }
 

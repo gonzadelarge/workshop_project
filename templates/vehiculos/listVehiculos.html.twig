@@ -3,12 +3,10 @@
 {% block body %} 
 
     <div class="container">
-        <nav class="navbar navbar-dark bg-dark mt-2">
-            <a class="text-white nav-link" href="{{ path("newVehiculo") }}"><h4>Crear nuevo</h4></a>
-        </nav>
         
-        <nav class="navbar navbar-dark bg-dark mt-2">
-            <h5 class="text-white nav-link">Listado de Vehiculos</h5> 
+        <nav class="navbar navbar-ligh my-5" style="background-color: #cbe8fd;">
+            <h5 class="text-primary nav-link">Lista de vehículos</h5> 
+            <a class="text-primary nav-link" href="{{ path("newVehiculo") }}"><i class="fas fa-plus-circle mr-2"></i>Añadir nuevo</a>
         </nav>
             {# {% for mensaje in app.flashes('exito') %}
                 <p>{{ mensaje }}</p>

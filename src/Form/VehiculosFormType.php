@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Vehiculo;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +18,6 @@ class VehiculosFormType extends AbstractType
             ->add('Modelo')
             ->add('Year')
             ->add('Image')
-            // ->add('Cod_User')
             // ->add('Cod_Cita')
         ;
     }

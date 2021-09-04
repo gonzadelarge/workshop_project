@@ -29,7 +29,7 @@ use Symfony\Component\Routing\Annotation\Route;
         // CREAR UNA NUEVA CITA
 
         /**
-         * @Route("/citas/new", name="createCita")
+         * @Route("/citas/new", name="newCita")
          */
         public function createCita(Request $request, EntityManagerInterface $em) {
 
@@ -41,7 +41,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
                 $cita = $form->getData();
                 $user = $this->getUser();
-                $cita->setCodUser($user);
+                $cita->getName($user);
                 
                 $em->persist($cita);
                 $em->flush();
