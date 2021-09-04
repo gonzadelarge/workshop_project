@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block body %}    
+
+<div class="container">
+    <nav class="navbar navbar-dark bg-dark mt-2">
+        <a class="text-white nav-link" href="{{ path("showMecanicos") }}"><h4>Volver</h4></a>
+    </nav>
+    <div class="row row-cols-1 row-cols-md-2 mt-4">
+        <div class="col mb-4">
+            <div class="card">
+                {# <img src="{{vehiculo.image}}" class="card-img-top"> #}
+                <div class="card-body">
+                    <h5 class="card-title">{{mecanico.name}} {{mecanico.lastname}}</h5>
+                    <p class="card-text">DNI: {{mecanico.DNI}}</p>
+                    <p class="card-text">Dirección: {{mecanico.address}}</p>
+                    <p class="card-text">Salario: {{mecanico.salario}} €</p>
+                    <p class="card-text">Horas a la semana: {{mecanico.horas}}h</p>
+                    <a style="margin-left: -2px;" href="{{ path("editMecanico", {id: mecanico.id}) }}" class="card-link btn btn-secondary">Editar</a>
+                    <a style="margin-left: 10px;" href="{{ path("deleteMecanico", {id: mecanico.id}) }}" class="card-link btn btn-secondary">Borrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

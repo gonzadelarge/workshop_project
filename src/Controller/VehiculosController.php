@@ -14,6 +14,9 @@ use Symfony\Component\Routing\Annotation\Route;
     {
 
 
+        // MOSTRAR LA LISTA DE LOS VEHICULOS
+
+
         /**
          * @Route("/vehiculos", name="showVehiculos")
          */
@@ -25,6 +28,8 @@ use Symfony\Component\Routing\Annotation\Route;
             return $this->render("vehiculos/listVehiculos.html.twig", ["vehiculos" => $vehiculo]);
         }
 
+
+        // CREAR UN NUEVO VEHICULO
 
         /**
          * @Route("/vehiculos/new", name="newVehiculo")
@@ -50,6 +55,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
         }
 
+
+        // EDITAR UN SOLO COCHE
        
         /**
          * @Route ("/vehiculos/edit/{id}", name = "editVehiculo")

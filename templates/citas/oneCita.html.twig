@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block body %}    
+
+<div class="container">
+    <nav class="navbar navbar-dark bg-dark mt-2">
+        <a class="text-white nav-link" href="{{ path("showCitas") }}"><h4>Volver</h4></a>
+    </nav>
+    <div class="row row-cols-1 row-cols-md-2 mt-4">
+        <div class="col mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{cita.fecha}}</h5>
+                    <a style="margin-left: -2px;" href="{{ path("editCita", {id: cita.id}) }}" class="card-link btn btn-secondary">Editar</a>
+                    <a style="margin-left: 10px;" href="{{ path("deleteCita", {id: cita.id}) }}" class="card-link btn btn-secondary">Borrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

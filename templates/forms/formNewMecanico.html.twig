@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="form">
+            {{ form_start(formMecanico) }}
+                {{form_widget(formMecanico)}}
+                <button class="btn btn-lg btn-primary" type="submit">Enviar</button>
+            {{ form_end(formMecanico) }}
+        </div>
+    </div>
+
+{% endblock %}

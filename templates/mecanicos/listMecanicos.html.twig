@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block body %} 
+
+    <div class="container">
+        
+        <nav class="navbar navbar-ligh my-5" style="background-color: #cbe8fd;">
+            <h5 class="text-primary nav-link">Listado de Mecánicos</h5> 
+            <a class="text-primary nav-link" href="{{ path("newMecanico") }}"><i class="fas fa-plus-circle mr-2"></i>Crear nuevo</a>
+        </nav>
+            {# {% for mensaje in app.flashes('exito') %}
+                <p>{{ mensaje }}</p>
+            {% endfor %} #}
+    
+        <div class="row row-cols-md-4 mt-3">
+        {% for mecanico in mecanicos %}
+            <div class="col mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{mecanico.name}} {{mecanico.lastname}}</h5>
+                        <p class="card-text">Horas semanales: {{mecanico.horas}}h</p>
+                        <p class="card-text">Dirección: {{mecanico.address}}</p>
+                        <a style="margin-left: 0;" href="{{ path("showMecanico", {id: mecanico.id}) }}" class="card-link btn btn-primary">Más Info</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
+

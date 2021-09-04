@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        
+        <script src="https://kit.fontawesome.com/0f65edafbd.js" crossorigin="anonymous"></script>
         {% block stylesheets %}
             {# {{{ encore_entry_link_tags('app') }}} #}
         {% endblock %}
@@ -35,9 +35,10 @@
 
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 {% if is_granted("ROLE_USER") %}
-                    <li class="nav-item"><a class="text-dark nav-link active">Hola {{ app.user.name }}</a></li>
+                    <li class="nav-item"><a class="text-dark nav-link" href="#">{{ app.user.name }}</a></li>
                     <li class="nav-item"><a class="text-dark nav-link" href="#">Citas</a></li>
-                    <li class="nav-item"><a class="text-dark nav-link" href="{{ path("app_logout") }}">Logout</a></li>
+                    <li class="nav-item"><a class="text-dark nav-link" href="{{ path("showMecanicos") }}">Mecanicos</a></li>
+                    <li class="nav-item"><a class="text-dark nav-link" href="{{ path("app_logout") }}"><i class="fas fa-sign-out-alt"></i></a></li>
                 {% else %}
                     <li class="nav-item"><a class="text-dark nav-link" href="{{ path("app_login") }}">LogIn</a></li>
                     <li class="nav-item"><a class="text-dark nav-link" href="{{ path("app_register") }}">Registrarse</a></li>
@@ -52,8 +53,46 @@
           </nav>
         
         {% endblock %}
+
         {% block body %}{% endblock %}
-        {% block footer %}{% endblock %}
+
+        {% block footer %}
+          
+      <footer class="text-center" style="background-color: #e3f2fd;">
+          <div class="container p-4">
+            <section class="text-dark my-4">
+              <a class="btn btn-outline-primary btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+              <a class="btn btn-outline-primary btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+              <a class="btn btn-outline-primary btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+              <a class="btn btn-outline-primary btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+              <a class="btn btn-outline-primary btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+              <a class="btn btn-outline-primary btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+            </section>
+
+            <section class="mb-2">
+              <form action="form-inline">
+                <div class="row d-flex justify-content-center">
+                  <div class="col-auto"><p class="pt-2">Sign up for our newsletter</p></div>
+    
+                  <div class="col-md-5 col-12">
+                    <div class="form-outline form-white mb-4">
+                      <input type="email" id="form5Example2" class="form-control" placeholder="Email address" />
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-outline-light mb-4">Subscribe</button>
+                  </div>
+                </div>
+              </form>
+            </section>
+          </div>
+          <div class="text-center p-3" style="background-color: rgba(12, 5, 37, 0.6);">
+            © 2021 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+          </div>
+        </footer>
+
+        {% endblock %}
 
         <script></script>
 
