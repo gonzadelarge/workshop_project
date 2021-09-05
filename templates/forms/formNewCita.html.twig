@@ -3,7 +3,7 @@
 {% block body %}
 
     <div class="container mt-2 py-5">
-        <form class="form-group mt-2 py-5">
+        <div class="form-group mt-2 py-5">
 
             {{ form_start(formCita) }}
 
@@ -26,7 +26,7 @@
                 {{form_widget(formCita)}}
                 <button class="btn btn-lg btn-primary btn-block mt-5" type="submit">Enviar</button>
             {{ form_end(formCita) }}
-        </form>
+        </div>
     </div>
 
 {% endblock %}
