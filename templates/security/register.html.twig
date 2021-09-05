@@ -9,10 +9,39 @@
         </nav>
 
         <div class="container-sm">
-            <div class="form-group p-4" style="background-color: #e3f2fd8c;">
-                {{ form_start(userForm) }}
-                    {{ form_widget(userForm) }}
-                    <button class="mt-2 mb-5 btn btn-sm btn-primary" type="submit">Registrarme</button>
+            <div class="form-group mt-2 py-5" style="background-color: #e3f2fd50;">
+                    {{ form_start(userForm) }}
+
+                <div class="alert-danger">
+                    {{ form_errors(userForm) }}
+                </div>
+
+                <div class="form-group">
+                    <div class="form-control my-2 py-5">
+                        {{ form_row(userForm.email) }}
+                    </div>
+                    <div class="form-control my-2 py-5">
+                        {{ form_row(userForm.password) }}
+                    </div>
+                    <div class="form-control my-2 py-5">
+                        {{ form_row(userForm.DNI) }}
+                    </div>
+                    <div class="form-control my-2 py-5">
+                        {{ form_row(userForm.name) }}
+                    </div>
+                    <div class="form-control my-2 py-5">
+                        {{ form_row(userForm.lastname) }}
+                    </div>
+                    <div class="form-control my-2 py-5">
+                        {{ form_row(userForm.address) }}
+                    </div>
+                    <div class="form-control my-2 py-5">
+                        {{ form_row(userForm.phone_number) }}
+                    </div>
+                </div>
+
+                    {{form_widget(userForm)}}
+                    <button class="btn btn-lg btn-primary btn-block mt-5" type="submit">Enviar</button>
                 {{ form_end(userForm) }}
             </div>
         </div>

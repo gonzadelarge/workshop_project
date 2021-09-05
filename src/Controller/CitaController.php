@@ -13,19 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
     class CitaController extends AbstractController
     {
 
-        // MOSTRAR LA LISTA DE LAS CITAS
-
-        /**
-         * @Route("/citas", name="showCitas")
-         */
-        public function showCitas(EntityManagerInterface $doctrine) {
-            
-            $repo = $doctrine->getRepository(Cita::class);
-            $cita = $repo->findAll();
-
-            return $this->render("citas/listCitas.html.twig", ["citas" => $cita]);
-        }
-
         // CREAR UNA NUEVA CITA
 
         /**
@@ -43,13 +30,14 @@ use Symfony\Component\Routing\Annotation\Route;
                 $user = $this->getUser();
                 $cita->setCodUser($user);
 
-                
+                $id = $user->getId();
+
                 $em->persist($cita);
                 $em->flush();
 
                 $this->addFlash("exito", "Cita creada correctamente");
 
-                return $this->redirectToRoute('showCitas');
+                return $this->redirectToRoute('showCitas', ["id" => $id]);
             }
 
             return $this->render("forms/formNewCita.html.twig",['formCita' => $form->createView()]);
@@ -71,11 +59,15 @@ use Symfony\Component\Routing\Annotation\Route;
             if ($form->isSubmitted() && $form->isValid()) {
 
                 $cita = $form->getData();
-            
+
+                $user = $this->getUser();
+                $cita->setCodUser($user);
+                $id = $user->getId();
+
                 $em->persist($cita);
                 $em->flush();
 
-                return $this->redirectToRoute('showCitas');
+                return $this->redirectToRoute('showCitas', ["id" => $id]);
             }
 
             return $this->render("forms/formNewcita.html.twig",['formCita' => $form->createView(), 'flag'=>$flag, 'cita'=>$cita]);
@@ -92,17 +84,21 @@ use Symfony\Component\Routing\Annotation\Route;
 
             $repo = $doctrine->getRepository(Cita::class);
             $cita = $repo->find($id);
+
+            $user = $this->getUser();
+            $idUser = $user->getId();
+
             $doctrine->remove($cita);
             $doctrine->flush();
             
-            return $this->redirectToRoute("showCitas");
+            return $this->redirectToRoute("showCitas", ["id" => $idUser]);
         }
 
 
         // MOSTRAR UNA SOLA CITA
 
         /**  
-         * @Route("/citas/{id}", name="showCita") 
+         * @Route("/cita/{id}", name="showCita") 
          */
         public function showCita(Cita $cita, EntityManagerInterface $doctrine, $id){
 
@@ -111,6 +107,20 @@ use Symfony\Component\Routing\Annotation\Route;
             $cita = $repo->find($id);
 
             return $this->render("citas/oneCita.html.twig",["cita" => $cita]);
+        }
+
+
+        // MOSTRAR LA LISTA DE LAS CITAS
+
+        /**
+         * @Route("/citas/{id}", name="showCitas")
+         */
+        public function showCitas(EntityManagerInterface $doctrine, $id) {
+            
+            $repo = $doctrine->getRepository(Cita::class);
+            $cita = $repo->findBy(["CodUser" => $id]);
+
+            return $this->render("citas/listCitas.html.twig", ["citas" => $cita]);
         }
 
     }

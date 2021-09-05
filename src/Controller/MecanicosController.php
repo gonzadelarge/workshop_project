@@ -20,12 +20,10 @@
         /**
          * @Route("/mecanicos", name="showMecanicos")
          */
-        public function showMecanicos(EntityManagerInterface $doctrine) { // WorkshopManager $manager
+        public function showMecanicos(EntityManagerInterface $doctrine) {
             
             $repo = $doctrine->getRepository(Mecanico::class);
             $mecanico = $repo->findAll();
-
-            // $manager->sendMail('Tu primer mail', 'Has enviado un mail');
 
             return $this->render("mecanicos/listMecanicos.html.twig", ["mecanicos" => $mecanico]);
         }

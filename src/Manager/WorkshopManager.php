@@ -14,11 +14,11 @@ class WorkshopManager
     protected $mailer;
 
 
-    public function __construct(MaelInterventionImageManager $mensaje, MailerInterface $mailer)
-    {
-        $this->imageManger = $mensaje;
-        $this->mailer-> $mailer;
-    }
+    // public function __construct(MaelInterventionImageManager $mensaje, MailerInterface $mailer)
+    // {
+    //     $this->imageManger = $mensaje;
+    //     $this->mailer-> $mailer;
+    // }
 
     public function sendMail($subject, $body)
     {

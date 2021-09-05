@@ -5,38 +5,50 @@
 {% block body %}
 <div class="container">
         
-    <form class="form-group" method="post">
+    <form class="form-group my-5" method="post">
        
-            
+        {% if app.user %}
+        <nav  class="navbar navbar-light my-5">
+            <h4 class="my-3 font-weight-light">No hay nada que hacer</h4>
+            <a class="text-dark nav-link" href="#">Ni ensueños<i class="fas ml-3 fa-user-secret"></i></a>
+        </nav>
+        
+        {% else %}
+
         <nav  class="navbar navbar-light my-5">
             <h4 class="my-3 font-weight-light">Please sign in</h4>
             <a class="text-dark nav-link" href="{{ path("app_register") }}">Register<i class="fas ml-3 fa-user-secret"></i></a>
         </nav>
 
+        {% endif %}
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
         {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+            <div class="container py-5">
+                <div class="container text-center my-5 py-5">
+                    <p>Ya estás logueado con el usuario {{ app.user.username }}</p>
+                    <a href="{{ path('app_logout') }}">Salir <i class="ml-3 fas fa-sign-out-alt"></i></a>
+                </div>
             </div>
-        {% endif %}
         
-        <label class="my-2" for="inputEmail">Email</label>
-        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-        <label class="my-2" for="inputPassword">Password</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        {% else %}
+            
+            <label class="my-2" for="inputEmail">Email</label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+            <label class="my-2" for="inputPassword">Password</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
     
-        <div class="checkbox my-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
+            <div class="checkbox my-3">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Remember me
+                </label>
+            </div>
 
         <button class="btn btn-sm btn-primary mb-4" type="submit">Sign in</button>
-
+        {% endif %}
     </form>
 </div>
 {% endblock %}
