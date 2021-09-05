@@ -2,23 +2,19 @@
 
 namespace App\Manager;
 
-use Mael\InterventionImageBundle\MaelInterventionImageManager;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
 class WorkshopManager 
 {
 
-
-    protected $imageManger;
     protected $mailer;
 
 
-    // public function __construct(MaelInterventionImageManager $mensaje, MailerInterface $mailer)
-    // {
-    //     $this->imageManger = $mensaje;
-    //     $this->mailer-> $mailer;
-    // }
+    public function __construct( MailerInterface $mailer)
+    {
+        $this->mailer-> $mailer;
+    }
 
     public function sendMail($subject, $body)
     {
