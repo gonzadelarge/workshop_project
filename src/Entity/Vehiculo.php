@@ -35,7 +35,7 @@ class Vehiculo
     private $Modelo;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $Year;
 
@@ -105,12 +105,12 @@ class Vehiculo
         return $this;
     }
 
-    public function getYear(): ?\DateTimeInterface
+    public function getYear(): ?int
     {
         return $this->Year;
     }
 
-    public function setYear(?\DateTimeInterface $Year): self
+    public function setYear(?int $Year): self
     {
         $this->Year = $Year;
 

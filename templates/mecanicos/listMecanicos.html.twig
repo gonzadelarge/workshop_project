@@ -8,9 +8,12 @@
             <h5 class="text-primary nav-link">Lista de mecánicos</h5> 
             <a class="text-primary nav-link" href="{{ path("newMecanico") }}"><i class="fas fa-plus-circle mr-2"></i>Añadir empleado</a>
         </nav>
-            {# {% for mensaje in app.flashes('exito') %}
-                <p>{{ mensaje }}</p>
-            {% endfor %} #}
+        
+        {% for mensaje in app.flashes('exito') %}
+        <div class="alert alert-success" role="alert">
+            <p>{{ mensaje }}</p>
+        </div>
+        {% endfor %}
     
         <div class="row row-cols-md-4 my-3">
         {% for mecanico in mecanicos %}

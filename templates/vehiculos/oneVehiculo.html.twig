@@ -15,7 +15,7 @@
                 <h3 class="card-title">{{vehiculo.matricula}}</h3>
                 <h4 class="card-text">{{vehiculo.marca}}</h4>
                 <h5 class="card-text">{{vehiculo.modelo}}</h5>
-                <p class="card-text">{{vehiculo.year|date}}</p>
+                <p class="card-text">{{vehiculo.year}}</p>
         
                 <a href="{{ path("deleteVehiculo", {id: vehiculo.id}) }}" class="btn btn-primary">Borrar</a>
                 <a href="{{ path("editVehiculo", {id: vehiculo.id}) }}" class="btn btn-primary">Editar</a>

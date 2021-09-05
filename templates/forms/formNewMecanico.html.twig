@@ -2,13 +2,41 @@
 
 {% block body %}
 
-    <div class="container">
-        <div class="form">
-            {{ form_start(formMecanico) }}
-                {{form_widget(formMecanico)}}
-                <button class="btn btn-lg btn-primary" type="submit">Enviar</button>
-            {{ form_end(formMecanico) }}
+<div class="container mt-2 py-5">
+       
+    <form class="form-group mt-2 py-5">
+
+        {{ form_start(formMecanico) }}
+
+        <div class="alert-danger">
+            {{ form_errors(formMecanico) }}
         </div>
-    </div>
+
+        <div class="form-group">
+            <div class="form-control my-4">
+                {{ form_row(formMecanico.name) }}
+            </div>
+            <div class="form-control my-4">
+                {{ form_row(formMecanico.lastname) }}
+            </div>
+            <div class="form-control my-4">
+                {{ form_row(formMecanico.DNI) }}
+            </div>
+            <div class="form-control my-4">
+                {{ form_row(formMecanico.address) }}
+            </div>
+            <div class="form-control my-4">
+                {{ form_row(formMecanico.salario) }}
+            </div>
+            <div class="form-control my-4">
+                {{ form_row(formMecanico.horas) }}
+            </div>
+        </div>
+
+            {{form_widget(formMecanico)}}
+            <button class="btn btn-lg btn-primary btn-block mt-5" type="submit">Enviar</button>
+        {{ form_end(formMecanico) }}
+    </form>
+</div>
 
 {% endblock %}

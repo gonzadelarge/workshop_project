@@ -41,7 +41,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
                 $cita = $form->getData();
                 $user = $this->getUser();
-                $cita->getName($user);
+                $cita->getUser($user);
+
                 
                 $em->persist($cita);
                 $em->flush();

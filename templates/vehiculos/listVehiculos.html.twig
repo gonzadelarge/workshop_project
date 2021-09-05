@@ -10,7 +10,9 @@
         </nav>
         
             {% for mensaje in app.flashes('exito') %}
+            <div class="alert alert-success" role="alert">
                 <p>{{ mensaje }}</p>
+            </div>
             {% endfor %}
     
         <div class="row row-cols-md-4 mt-3">
@@ -21,7 +23,7 @@
                         <p class="card-title">Matricula: <h5>{{vehiculo.matricula}}</h5></p>
                         <p class="card-text">Marca: <h5>{{vehiculo.marca}}</h5></p>
                         <p class="card-text">Modelo: <h5>{{vehiculo.modelo}}</h5></p>
-                        <p class="card-text">Modelo: <h5>{{vehiculo.year|date}}</h5></p>
+                        <p class="card-text">Año: <h5>{{vehiculo.year}}</h5></p>
                         <a href="{{ path("showVehiculo", {id: vehiculo.id}) }}" class="btn btn-primary">Más Info</a>
                     </div>
                 </div>

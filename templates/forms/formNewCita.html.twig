@@ -2,11 +2,29 @@
 
 {% block body %}
 
-    <div class="container">
-        <form class="form-control">
+    <div class="container mt-2 py-5">
+        <form class="form-group mt-2 py-5">
+
             {{ form_start(formCita) }}
+
+            <div class="alert-danger">
+                {{ form_errors(formCita) }}
+            </div>
+
+            <div class="form-group">
+                <div class="form-control my-5 py-5">
+                    {{ form_row(formCita.fecha) }}
+                </div>
+                <div class="form-control my-5 py-5">
+                    {{ form_row(formCita.mecanico) }}
+                </div>
+                <div class="form-control my-5 py-5">
+                    {{ form_row(formCita.vehiculo) }}
+                </div>
+            </div>
+
                 {{form_widget(formCita)}}
-                <button class="btn btn-lg btn-primary" type="submit">Enviar</button>
+                <button class="btn btn-lg btn-primary btn-block mt-5" type="submit">Enviar</button>
             {{ form_end(formCita) }}
         </form>
     </div>
