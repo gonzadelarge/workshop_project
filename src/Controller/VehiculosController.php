@@ -49,7 +49,7 @@ class VehiculosController extends AbstractController
                 $em->persist($vehiculo);
                 $em->flush();
 
-                $this->addFlash("exito", "Vehiculo insertado correctamente.");
+                $this->addFlash("exito", "Vehículo insertado correctamente.");
 
                 return $this->redirectToRoute('showVehiculos', ["id" => $id]);
             }
