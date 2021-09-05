@@ -37,6 +37,11 @@ class Cita
      */
     private $user;
 
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
+     */
+    private $CodUser;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -116,6 +121,18 @@ class Cita
         }
 
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCodUser(): ?User
+    {
+        return $this->CodUser;
+    }
+
+    public function setCodUser(?User $CodUser): self
+    {
+        $this->CodUser = $CodUser;
 
         return $this;
     }

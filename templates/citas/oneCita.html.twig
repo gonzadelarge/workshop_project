@@ -10,7 +10,7 @@
         <div class="col mb-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{cita.fecha}}</h5>
+                    <h5 class="card-title">{{cita.fecha|date}}</h5>
                     <a style="margin-left: -2px;" href="{{ path("editCita", {id: cita.id}) }}" class="card-link btn btn-secondary">Editar</a>
                     <a style="margin-left: 10px;" href="{{ path("deleteCita", {id: cita.id}) }}" class="card-link btn btn-secondary">Borrar</a>
                 </div>

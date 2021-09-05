@@ -8,27 +8,34 @@
             <h5 class="text-primary nav-link">Próximas Citas</h5> 
             <a class="text-primary nav-link" href="{{ path("newCita") }}"><i class="fas fa-plus-circle mr-2"></i>Crear nueva</a>
         </nav>
-            {# {% for mensaje in app.flashes('exito') %}
+
+        {% for mensaje in app.flashes('exito') %}
+            <div class="alert alert-success" role="alert">
                 <p>{{ mensaje }}</p>
-            {% endfor %} #}
+            </div>
+        {% endfor %}
     
-        <div class="row row-cols-md-4 mt-3">
-        {% if citas is same as null %}
+        <div class="row row-cols-md-3 my-3 py-3">
+            
+            {% if citas is empty %}
+                <div class="container mt-4">
+                    <p class="text-primary text-center my-4 py-5">Añade tu próxima Cita</p> 
+                </div>
+            {% else %}
+
             {% for cita in citas %}
-                <div class="col mb-3">
+                <div class="col mb-5 py-3">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">{{fecha.name}}</h5>
+                            <h5 class="card-title">Tu próxima cita es el día:</h5>
+                            <p class="card-text">{{cita.fecha|date}}</p>
                             <a style="margin-left: 0;" href="{{ path("showCita", {id: cita.id}) }}" class="card-link btn btn-primary">Más Info</a>
                         </div>
                     </div>
                 </div>            
             {% endfor %}
-        {% else %}
-            <div class="container mt-4">
-                <p class="text-primary text-center my-4 py-5">Añade tu próxima Cita</p> 
-            </div>
-        {% endif %}
+
+            {% endif %}
         </div>
     </div>
 

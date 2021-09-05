@@ -41,11 +41,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
                 $cita = $form->getData();
                 $user = $this->getUser();
-                $cita->getUser($user);
+                $cita->setCodUser($user);
 
                 
                 $em->persist($cita);
                 $em->flush();
+
+                $this->addFlash("exito", "Cita creada correctamente");
 
                 return $this->redirectToRoute('showCitas');
             }
@@ -69,9 +71,7 @@ use Symfony\Component\Routing\Annotation\Route;
             if ($form->isSubmitted() && $form->isValid()) {
 
                 $cita = $form->getData();
-                $user = $this->getUser();
-                $cita->setCodUser($user);
-                
+            
                 $em->persist($cita);
                 $em->flush();
 

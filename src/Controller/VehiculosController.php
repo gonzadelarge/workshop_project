@@ -79,7 +79,7 @@ class VehiculosController extends AbstractController
                 $em->persist($vehiculo);
                 $em->flush();
 
-                $this->addFlash("exito", "Vehiculo editado correctamente.");
+                $this->addFlash("exito", "Vehiculo editado correctamente");
 
                 return $this->redirectToRoute('showVehiculos', ["id" => $id]);
             }
