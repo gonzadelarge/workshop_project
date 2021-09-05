@@ -3,12 +3,12 @@
 {% block body %}
 
     <div class="container">
-        <div class="form">
+        <form class="form-control">
             {{ form_start(formCita) }}
                 {{form_widget(formCita)}}
                 <button class="btn btn-lg btn-primary" type="submit">Enviar</button>
             {{ form_end(formCita) }}
-        </div>
+        </form>
     </div>
 
 {% endblock %}

@@ -6,27 +6,14 @@ use App\Entity\Vehiculo;
 use App\Form\VehiculosFormType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
-    class VehiculosController extends AbstractController
+class VehiculosController extends AbstractController
     {
-
-
-        // MOSTRAR LA LISTA DE LOS VEHICULOS
-
-
-        /**
-         * @Route("/vehiculos", name="showVehiculos")
-         */
-        public function showVehiculos(EntityManagerInterface $doctrine) {
-            
-            $repo = $doctrine->getRepository(Vehiculo::class);
-            $vehiculo = $repo->findAll();
-
-            return $this->render("vehiculos/listVehiculos.html.twig", ["vehiculos" => $vehiculo]);
-        }
 
 
         // CREAR UN NUEVO VEHICULO
@@ -34,21 +21,37 @@ use Symfony\Component\Routing\Annotation\Route;
         /**
          * @Route("/vehiculos/new", name="newVehiculo")
          */
-        public function createVehiculo(Request $request, EntityManagerInterface $em) {
+        public function createVehiculo(Request $request, EntityManagerInterface $em, SluggerInterface $slugger) {
 
             $this->denyAccessUnlessGranted('ROLE_USER');
+
             $form = $this->createForm(VehiculosFormType::class);
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $image = $form->get('Image')->getData();
                 $vehiculo = $form->getData();
+
+                $path = $this->getParameter('kernel.project_dir').'/public/images/vehiculos';
+                $filename = $slugger->slug($vehiculo->getMarca()).'.'.$image->guessClientExtension();
+
+                $image->move(
+                    $path,
+                    $filename
+                );
+
+                $vehiculo->setImage("/images/vehiculos/$filename");
+
                 $user = $this->getUser();
                 $vehiculo->setCodUser($user);
+                $id = $user->getId();
 
                 $em->persist($vehiculo);
                 $em->flush();
 
-                return $this->redirectToRoute('showVehiculos');
+                $this->addFlash("exito", "Vehiculo insertado correctamente.");
+
+                return $this->redirectToRoute('showVehiculos', ["id" => $id]);
             }
 
             return $this->render("forms/formNewVehiculo.html.twig",['formVehiculo' => $form->createView()]);
@@ -72,11 +75,11 @@ use Symfony\Component\Routing\Annotation\Route;
                 $vehiculo = $form->getData();
                 $user = $this->getUser();
                 $vehiculo->setCodUser($user);
-
+                $id = $user->getId();
                 $em->persist($vehiculo);
                 $em->flush();
 
-                return $this->redirectToRoute('showVehiculos');
+                return $this->redirectToRoute('showVehiculos', ["id" => $id]);
             }
 
             return $this->render("forms/formNewVehiculo.html.twig",['formVehiculo' => $form->createView(), 'flag'=>$flag, 'vehicle'=>$vehiculo]);
@@ -93,15 +96,19 @@ use Symfony\Component\Routing\Annotation\Route;
             $this->denyAccessUnlessGranted('ROLE_USER');
             $repo = $doctrine->getRepository(Vehiculo::class);
             $vehiculo = $repo->find($id);
+            
+            $user = $this->getUser();
+            $idUser = $user->getId();
+
             $doctrine->remove($vehiculo);
             $doctrine->flush();
-            return $this->redirectToRoute("showVehiculos");
+            return $this->redirectToRoute('showVehiculos', ["id" => $idUser]);
         }
 
         // MOSTRAR UN SOLO COCHE
 
         /**  
-         * @Route("/vehiculos/{id}", name="showVehiculo") 
+         * @Route("/vehiculo/{id}", name="showVehiculo") 
          */
         public function postVehicleDetails(Vehiculo $vehiculo, EntityManagerInterface $doctrine, $id){
 
@@ -110,5 +117,19 @@ use Symfony\Component\Routing\Annotation\Route;
             $vehiculo = $repo->find($id);
 
             return $this->render("vehiculos/oneVehiculo.html.twig",["vehiculo" => $vehiculo]);
+        }
+
+         // MOSTRAR LA LISTA DE LOS VEHICULOS
+
+
+        /**
+         * @Route("/vehiculos/{id}", name="showVehiculos")
+         */
+        public function showVehiculos(EntityManagerInterface $doctrine, $id) {
+            
+            $repo = $doctrine->getRepository(Vehiculo::class);
+            $vehiculo = $repo->findBy(["Cod_User" => $id]);
+
+            return $this->render("vehiculos/listVehiculos.html.twig", ["vehiculos" => $vehiculo]);
         }
     }

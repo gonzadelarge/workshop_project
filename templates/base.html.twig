@@ -13,7 +13,7 @@
             {#{{ encore_entry_script_tags('app') }}#}
         {% endblock %}
     </head>
-    <body>
+    <body class="bg-light">
 
         {% block header %}  
 
@@ -37,7 +37,7 @@
                 {% if is_granted("ROLE_USER") %}
                     <li class="nav-item"><a class="text-dark nav-link" href="#">{{ app.user.name }}</a></li>
                     <li class="nav-item"><a class="text-dark nav-link" href="{{ path("showCitas") }}">Citas</a></li>
-                    <li class="nav-item"><a class="text-dark nav-link" href="{{ path("showVehiculos") }}">Vehículos</a></li>
+                    <li class="nav-item"><a class="text-dark nav-link" href="{{ path("showVehiculos", {id: app.user.id}) }}">Vehículos</a></li>
                     <li class="nav-item"><a class="text-dark nav-link" href="{{ path("showMecanicos") }}">Mecanicos</a></li>
                     <li class="nav-item"><a class="text-dark nav-link" href="{{ path("app_logout") }}"><i class="fas fa-sign-out-alt"></i></a></li>
                 {% else %}
@@ -59,7 +59,7 @@
 
         {% block footer %}
           
-      <footer class="text-center" style="background-color: #e3f2fd;">
+      <footer class="text-center w-100 mt-5" style="background-color: #e3f2fdce;">
           <div class="container p-4">
             <section class="text-dark my-4">
               <a class="btn btn-outline-primary btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
@@ -81,7 +81,7 @@
                     </div>
                   </div>
                   <div class="col-auto">
-                    <button type="submit" class="btn btn-outline-light mb-4">Subscribe</button>
+                    <button type="submit" class="btn btn-outline-primary mb-4">Subscribe</button>
                   </div>
                 </div>
               </form>
@@ -89,7 +89,7 @@
           </div>
           <div class="text-center p-3" style="background-color: rgba(12, 5, 37, 0.6);">
             © 2021 Copyright:
-            <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            <a class="text-white" href="https://gonzadelarge.com/">Gonza DeLarge</a>
           </div>
         </footer>
 

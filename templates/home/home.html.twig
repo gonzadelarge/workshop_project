@@ -1,19 +1,27 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-   <div class="container mt-4 p-4 bg-light">
-       <div class="container-sm">
+   <div class="container my-4 p-4">
+       <div class="container-sm my-4">
         {% if is_granted("ROLE_USER") %}
+            <div class="p-5 text-center">
+                <h1 class="mb-3">Hola {{app.user.name}}</h1>
+                <p class="mb-3">¿Cómo van esas ruedas?</p>
+            </div>
+            <div class="container-fluid text-center">
+                <a class="btn btn-primary" href="{{ path("newCita") }}" role="button">Crear Cita</a>
+                <a class="btn btn-primary" href="{{ path("newVehiculo") }}" role="button">Añadir vehículo</a>
+                <a class="btn btn-primary" href="{{ path("showVehiculos", {id: app.user.id}) }}" role="button">Consultar Mecánicos</a>
+            </div>
+        {% else %}
         <div class="p-5 text-center">
-            <h1 class="mb-3">{{app.user.name}}</h1>
-            <p class="mb-3">¿Cómo van esas ruedas?</p>
+            <h1 class="mb-3">Bienvenid@</h1>
+            <p class="mb-3">Reserva ahora tu cita para el mecánico</p>
         </div>
         <div class="container-fluid text-center">
-            <a class="btn btn-primary" href="" role="button">Crear Cita</a>
-            <a class="btn btn-primary" href="{{ path("newVehiculo") }}" role="button">Añadir vehículoo</a>
-            <a class="btn btn-primary" href="" role="button">Consultar Mecánicos</a>
+            <a class="btn btn-primary" href="{{ path("app_register") }}" role="button">Unete a nosotros</a>
         </div>
-            {% endif %}
+        {% endif %}
         </div>
    </div>
 {% endblock %}

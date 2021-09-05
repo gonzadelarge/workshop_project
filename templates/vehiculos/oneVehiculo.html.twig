@@ -3,24 +3,22 @@
 {% block body %}    
 
 <div class="container">
-    <nav class="navbar navbar-dark bg-dark mt-2">
-        <a class="text-white nav-link" href="{{ path("showVehiculos") }}"><h4>Volver</h4></a>
+   
+    <nav class="navbar navbar-ligh my-5">
+        <a class="text-primary font-weight-light nav-link" href="{{ path("showVehiculos", {id: app.user.id}) }}"><i class="mr-3 fas fa-long-arrow-alt-left"></i>Volver</a>
     </nav>
-    <h2>Así luce tu coche</h2>
-
-    <div class="row row-cols-1 row-cols-md-2">
-        <div class="col mb-4">
-            <div class="card">
-                {# <img src="{{vehiculo.image}}" class="card-img-top"> #}
-                <div class="card-body">
-                    <p class="card-title">Matricula: <h5>{{vehiculo.matricula}}</h5></p>
-                    <p class="card-text">Marca: <h5>{{vehiculo.marca}}</h5></p>
-                    <p class="card-text">Modelo: <h5>{{vehiculo.modelo}}</h5></p>
-                    <p class="card-text">Modelo: <h5>{{vehiculo.year|date}}</h5></p>
-            
-                    <a href="{{ path("deleteVehiculo", {id: vehiculo.id}) }}" class="btn btn-primary">Borrar</a>
-                    <a href="{{ path("editVehiculo", {id: vehiculo.id}) }}" class="btn btn-primary">Editar</a>
-                </div>
+    <h5 class="text-primary nav-link text-center my-3">Así luce tu coche</h5> 
+    <div class="container my-5">
+        <div class="card">
+            <img src="{{vehiculo.image}}" class="card-img-top">
+            <div class="card-body">
+                <h3 class="card-title">{{vehiculo.matricula}}</h3>
+                <h4 class="card-text">{{vehiculo.marca}}</h4>
+                <h5 class="card-text">{{vehiculo.modelo}}</h5>
+                <p class="card-text">{{vehiculo.year|date}}</p>
+        
+                <a href="{{ path("deleteVehiculo", {id: vehiculo.id}) }}" class="btn btn-primary">Borrar</a>
+                <a href="{{ path("editVehiculo", {id: vehiculo.id}) }}" class="btn btn-primary">Editar</a>
             </div>
         </div>
     </div>

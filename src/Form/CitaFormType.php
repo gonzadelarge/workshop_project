@@ -27,7 +27,7 @@ class CitaFormType extends AbstractType
             ->add('vehiculo',EntityType::class,
             [
                 'class'=> Vehiculo::class,
-                'choice_label'=>'name',
+                'choice_label'=>'modelo',
                 'multiple'=>true,
                 'expanded'=>true
             ])

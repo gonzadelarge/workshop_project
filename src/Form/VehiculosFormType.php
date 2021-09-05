@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Vehiculo;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,7 +18,7 @@ class VehiculosFormType extends AbstractType
             ->add('Marca')
             ->add('Modelo')
             ->add('Year')
-            ->add('Image')
+            ->add('Image', FileType::class, ['mapped'=>false, 'required'=>false])
             // ->add('Cod_Cita')
         ;
     }
